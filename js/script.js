@@ -19,7 +19,7 @@ class GroceryItem {
             </p>
         </div>
         <div class="checkout-item-price">
-            ${roundCash(this.count*this.price)}
+            $${roundCash(this.count*this.price).toFixed(2)}
         </div>
     </div>`
     }
@@ -42,16 +42,16 @@ const refreshCheckout = () => {
     });
     let tax = roundCash(subtotal * 0.07);
     let checkoutTotal = document.getElementById('checkoutTotal');
-    checkoutTotal.innerHTML = `<p class="subtotal">Subtotal: ${subtotal}</p>
-    <p class="tax">tax: ${tax}</p>
-    <p class="total">total: ${subtotal+tax}</p>`
+    checkoutTotal.innerHTML = `<p class="subtotal">Subtotal: $${subtotal.toFixed(2)}</p>
+    <p class="tax">tax: $${tax.toFixed(2)}</p>
+    <p class="total">total: $${(subtotal+tax).toFixed(2)}</p>`
 }
 form.addEventListener('submit', (event) => {
     event.preventDefault();
     // Fun fact. form.elements is type HTMLFormControlsCollection which inherits from HTMLCollection which contains the method "item"
     let item = form.elements['groceryItemForm'].value;
     let aisle = form.elements['aisle'].value;
-    let price = parseInt(form.elements['price'].value);
+    let price = parseFloat(form.elements['price'].value);
     let count = parseInt(form.elements['count'].value);
     let error = document.getElementById('error');
     console.log(item);
