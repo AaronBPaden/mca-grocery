@@ -1,0 +1,41 @@
+.header {
+    text-align: center;
+    padding: 2rem;
+}
+
+.main {
+    display: flex;
+    justify-content: space-between;
+}
+
+.grocery {
+    padding: 2rem;
+}
+
+.grocery > form {
+    display: flex;
+    flex-direction: column;
+}
+
+.checkout {
+    padding: 2rem;
+    width: 40%;
+    background: gray;
+}
+
+.grocery-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.checkout-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.checkout-item > p {
+    margin: 0;
+}

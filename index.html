@@ -5,12 +5,47 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/style.css">
         <title>Title</title>
     </head>
     <body>
+        <header class="header">
+            <h1>Grocery</h1>
+        </header>
+        <main class="main">
+            <div class="grocery">
+                <h2>Add Items</h2>
+                <form id="listForm" action="#link">
+                    <label for="groceryItemForm">
+                        Item:
+                        <input id="groceryItemForm" type="text" name="item" placeholder="Item" required>
+                    </label>
+                    <label for="aisle">
+                        Aisle number:
+                        <input id="aisle" type="number" name="aisle" min="0" max="10" step="1" required>
+                    </label>
+                    <label for="price">
+                        Price:
+                        <input id="price" type="number" name="price" min="0.01" step="0.01" required>
+                    </label>
+                    <label for="count">
+                        Count:
+                        <input id="count" type="number" name="count" min="1" step="1" required>
+                    </label>
+                    <input type="submit" value="Add Item">
+                </form>
+                <p id="error" class="error"></p>
+            </div>
+            <div id="checkout" class="checkout">
+                <h2>Checkout</h2>
+                <div id="checkoutItemList" class="checkout-item-list"></div>
+                <div id="checkoutTotal" class="checkout-total"></div>
+            </div>
+        </main>
         <script src="js/jquery-3.6.0.min.js"></script>
         <script src="js/popper.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
+        <script src="js/script.js"></script>
     </body>
 </html>
 
