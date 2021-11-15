@@ -10,7 +10,7 @@
     </head>
     <body>
         <header class="header">
-            <h1>Grocery</h1>
+            <h1>Restaurant Bill</h1>
         </header>
         <main class="main">
             <div class="grocery">
@@ -20,10 +20,6 @@
                         Item:
                         <input id="groceryItemForm" type="text" name="item" placeholder="Item" required>
                     </label>
-                    <label for="aisle">
-                        Aisle number:
-                        <input id="aisle" type="number" name="aisle" min="0" max="10" step="1" required>
-                    </label>
                     <label for="price">
                         Price:
                         <input id="price" type="number" name="price" min="0.01" step="0.01" required>
@@ -31,6 +27,19 @@
                     <label for="count">
                         Count:
                         <input id="count" type="number" name="count" min="1" step="1" required>
+                    </label>
+                    <p>Select a tip amount</p>
+                    <label for="tip15">
+                        <input type="radio" name="tipamount" id="tip15" value="15">
+                        15%
+                    </label>
+                    <label for="tip18">
+                        <input type="radio" name="tipamount" id="tip18" value="18">
+                        18%
+                    </label>
+                    <label for="tip20">
+                        <input type="radio" name="tipamount" id="tip20" value="20" checked>
+                        20%
                     </label>
                     <input type="submit" value="Add Item">
                 </form>

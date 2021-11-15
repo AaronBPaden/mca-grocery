@@ -3,11 +3,10 @@ let roundCash = (n) => {
     return Math.round(n*100)/100
 }
 class GroceryItem {
-    constructor(item, price, count, aisle, id) {
+    constructor(item, price, count, id) {
         this.item = item;
         this.price = price;
         this.count = count;
-        this.aisle = aisle;
         this.id = id;
     }
     toHTML() {
@@ -15,7 +14,7 @@ class GroceryItem {
         <div class="checkout-item">
             <button id=removeItem${this.id} class="btn btn-dark">−</button>
             <p>
-             ${this.count} ${this.item} on aisle ${this.aisle}
+             ${this.count} ${this.item}
             </p>
         </div>
         <div class="checkout-item-price">
@@ -30,6 +29,9 @@ let items = [];
 const refreshCheckout = () => {
     let subtotal = 0;
     let checkoutItemList = document.getElementById('checkoutItemList');
+    let tipRadios = document.getElementsByName('tipamount');
+    let tip = parseInt(Array.from(tipRadios).filter(e => e.checked)[0].value);
+    tip = roundCash(tip / 100);
     checkoutItemList.innerHTML = '';
     items.forEach((e) => {
         subtotal += e.count*e.price;
@@ -40,26 +42,26 @@ const refreshCheckout = () => {
             refreshCheckout();
         });
     });
+    tip = roundCash(tip*subtotal);
     let tax = roundCash(subtotal * 0.07);
     let checkoutTotal = document.getElementById('checkoutTotal');
     checkoutTotal.innerHTML = `<p class="subtotal">Subtotal: $${subtotal.toFixed(2)}</p>
     <p class="tax">tax: $${tax.toFixed(2)}</p>
-    <p class="total">total: $${(subtotal+tax).toFixed(2)}</p>`
+    <p class="tip">tip: $${tip.toFixed(2)}</p>
+    <p class="total">total: $${(subtotal+tax+tip).toFixed(2)}</p>`
 }
 form.addEventListener('submit', (event) => {
     event.preventDefault();
     // Fun fact. form.elements is type HTMLFormControlsCollection which inherits from HTMLCollection which contains the method "item"
     let item = form.elements['groceryItemForm'].value;
-    let aisle = form.elements['aisle'].value;
     let price = parseFloat(form.elements['price'].value);
     let count = parseInt(form.elements['count'].value);
     let error = document.getElementById('error');
-    console.log(item);
     if (items.filter(e => e.item === item).length > 0) {
         error.innerText = 'Sorry, duplicate entries cannot be processed. First remove item from checkout.';
     } else {
         error.innerText = '';
-        items.push(new GroceryItem(item, price, count, aisle, nextId));
+        items.push(new GroceryItem(item, price, count, nextId));
         nextId++;
         refreshCheckout();
     }
